@@ -64,6 +64,17 @@ func doWork(work chan string, wg *sync.WaitGroup, client *http.Client) {
             log.Println(err)
             continue
         }
+        
+        bodyString := ""
+        req.Header.Set("Connection", "close")
+        if resp.StatusCode == http.StatusOK {
+            bodyBytes, err := ioutil.ReadAll(resp.Body)
+            if err != nil {
+                log.Println(err)
+                continue
+            }
+            bodyString = string(bodyBytes)
+        }
 
         for _, signature := range []string{"Contact:", "Encryption:", "Acknowledgments:", "Preferred-Languages:", "Canonical:", "Policy:", "Hiring:"}{
             if strings.Contains(bodyString, signature){
