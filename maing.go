@@ -1,4 +1,4 @@
-package main
+package maing
 
 import (
     "bufio"
@@ -16,7 +16,7 @@ import (
 )
 
 
-func main() {
+func maing() {
         concurrencyPtr := flag.Int("t", 8, "Number of threads to utilise. Default is 8.")
         flag.Parse()
 
