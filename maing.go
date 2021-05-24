@@ -64,8 +64,7 @@ func doWork(work chan string, wg *sync.WaitGroup, client *http.Client) {
             log.Println(err)
             continue
         }
-      
-        }
+
         for _, signature := range []string{"Contact:", "Encryption:", "Acknowledgments:", "Preferred-Languages:", "Canonical:", "Policy:", "Hiring:"}{
             if strings.Contains(bodyString, signature){
                 fmt.Print("\n\n###########################\nFOUND security.txt: " + url + "\n###########################\n")
